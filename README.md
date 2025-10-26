@@ -75,16 +75,35 @@ Then start the bot!
 bunx skinjob
 ```
 
-## TODO
+### TODO
 
-### Features
+- [ ] fix(supervisor): make process cleanup reliable
+- [ ] fix(supervisor): handle renames
+- [x] feat(plugin): node.js workers
+- [x] feat(discord): text
+- [x] feat(ai): basic ai completions
+- [ ] feat(discord): images
+- [ ] feat(discord): audio
+- [ ] feat(chat): images
+- [ ] feat(chat): audio
+- [ ] feat(chat): joins, parts, quits, kicks, bans, topics, notices
+- [ ] feat(chat): system messages
+- [ ] feat(chat): move RichText types into protocol, cut down on `any`
+- [ ] feat(supervisor): worker signals
+- [ ] feat(services): speech
+- [ ] feat(services): voice
+- [ ] feat(services): configuration
+- [ ] feat(services): bridge
+- [ ] feat(clients): telegram
+- [ ] feat(clients): irc
+- [ ] feat(clients): irccloud
+- [ ] feat(clients): slack
+- [ ] feat(clients): matrix
+- [ ] chore: use bun catalogs
 
-- [x] Discord
-- [ ] Support more discord features
-- [ ] Telegram
-- [ ] IRC/IRCCloud
-- [ ] TTS/STT
+### Ideas
 
-### Hygiene
-
-- [ ] Use bun catalogs
+- [ ] feat(plugin): dotnet workers
+- [ ] feat(plugin): python workers
+- [ ] feat(plugin): ruby workers
+- [ ] feat(plugin): golang workers
