@@ -1,0 +1,13 @@
+{
+  "name": "@skinjob/service",
+  "version": "0.0.1",
+  "type": "module",
+  "license": "MIT",
+  "exports": "./src/index.ts",
+  "devDependencies": {
+    "@types/bun": "^1.3.1"
+  },
+  "dependencies": {
+    "@skinjob/bus": "workspace:*"
+  }
+}

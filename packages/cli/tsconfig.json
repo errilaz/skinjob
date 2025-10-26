@@ -1,0 +1,17 @@
+{
+  "references": [
+    { "path": "../supervisor/tsconfig.json" }
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "module": "esnext",
+    "target": "esnext",
+    "lib": ["esnext"],
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "strict": true
+  },
+  "include": ["./src"]
+}

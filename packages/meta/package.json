@@ -1,0 +1,19 @@
+{
+  "name": "skinjob",
+  "version": "0.0.1",
+  "type": "module",
+  "license": "MIT",
+  "exports": "./src/index.ts",
+  "bin": {
+    "skinjob": "src/skinjob.ts"
+  },
+  "dependencies": {
+    "@skinjob/bus": "workspace:*",
+    "@skinjob/service": "workspace:*",
+    "@skinjob/cli": "workspace:*",
+    "@skinjob/rich-text": "workspace:*",
+    "@skinjob/throttled-queue": "workspace:*",
+    "@skinjob/compose": "workspace:*",
+    "@skinjob/chat": "workspace:*"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "references": [
+    { "path": "../bus/tsconfig.json" },
+    { "path": "../service/tsconfig.json" },
+    { "path": "../cli/tsconfig.json" },
+    { "path": "../rich-text/tsconfig.json" },
+    { "path": "../throttled-queue/tsconfig.json" },
+    { "path": "../compose/tsconfig.json" },
+    { "path": "../chat/tsconfig.json" }
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "module": "esnext",
+    "target": "esnext",
+    "lib": ["esnext"],
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "strict": true,
+  },
+  "include": ["./src"]
+}

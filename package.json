@@ -1,0 +1,13 @@
+{
+  "name": "@skinjob/monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "services/*"
+  ],
+  "devDependencies": {
+    "@biomejs/biome": "2.3.0"
+  }
+}

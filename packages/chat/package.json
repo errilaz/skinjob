@@ -1,0 +1,11 @@
+{
+  "name": "@skinjob/chat",
+  "version": "0.0.1",
+  "type": "module",
+  "license": "MIT",
+  "exports": "./src/index.ts",
+  "dependencies": {
+    "@skinjob/bus": "workspace:*",
+    "@skinjob/compose": "workspace:*"
+  }
+}
