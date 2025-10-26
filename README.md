@@ -4,7 +4,6 @@
 
 ### What is skinjob?
 
-
 > Primarily a Bun-based **chat bot framework** but secretly a *"lightweight, hot-reloading local microservice supervisor and message bus"*
 
 Skinjob:
@@ -75,3 +74,17 @@ Then start the bot!
 ```sh
 bunx skinjob
 ```
+
+## TODO
+
+### Features
+
+- [x] Discord
+- [ ] Support more discord features
+- [ ] Telegram
+- [ ] IRC/IRCCloud
+- [ ] TTS/STT
+
+### Hygiene
+
+- [ ] Use bun catalogs

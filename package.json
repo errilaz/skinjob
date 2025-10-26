@@ -7,6 +7,14 @@
     "packages/*",
     "services/*"
   ],
+  "author": {
+    "name": "errilaz",
+    "url": "http://github.com/errilaz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/errilaz/skinjob.git"
+  },
   "devDependencies": {
     "@biomejs/biome": "2.3.0"
   }

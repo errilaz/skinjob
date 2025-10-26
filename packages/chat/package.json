@@ -4,6 +4,14 @@
   "type": "module",
   "license": "MIT",
   "exports": "./src/index.ts",
+  "author": {
+    "name": "errilaz",
+    "url": "http://github.com/errilaz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/errilaz/skinjob.git"
+  },
   "dependencies": {
     "@skinjob/bus": "workspace:*",
     "@skinjob/compose": "workspace:*"
