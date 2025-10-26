@@ -144,6 +144,14 @@ function startClient(
       for (const payload of payloads) {
         send.push(() => channel.send(payload))
       }
+    } else if (target.type === "direct") {
+      const user = client.users.resolve(target.authorId)
+      if (!user) throw new Error("Could not find user.")
+      const message = rich ? renderRichText(rich as RichText.Span) : text
+      const payloads = splitMaxLength(message, MAX_MESSAGE_LENGTH)
+      for (const payload of payloads) {
+        send.push(() => user.send(payload))
+      }
     }
   }
 }
