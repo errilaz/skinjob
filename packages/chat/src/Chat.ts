@@ -9,7 +9,7 @@ import type {
   ChatMessageEvent,
   ChatSignal,
   ChatVoiceCommand,
-  ChatVoiceEvent,
+  ChatVoiceEvent
 } from "./signals"
 
 export type ChatMessageOptions = {

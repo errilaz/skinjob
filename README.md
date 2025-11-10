@@ -9,23 +9,17 @@
 Skinjob:
 1. Watches a directory for worker scripts, starts them, and reloads them when they change (or their dependencies change).
 2. Provides helpers for communicating between them with events, commands, and remote function calls.
-3. Provides protocols and utilities for creating platform-agnostic chat bots.
+3. Provides utilities for creating platform-agnostic, strongly-typed chat bots.
 
 ## Intro
 
 In lieu of proper documentation and scaffoling, a quick introduction: creating a Discord bot that responds to one trigger which uses the OpenAI SDK.
 
-Add the meta-package to a new Bun project:
+Add the meta-package, a chat protocol, and the AI utility to a new Bun project:
 
-`bun add skinjob`
-
-Add a protocol:
-
-`bun add @skinjob/discord`
-
-Add a utility:
-
-`bun add @skinjob/ai`
+```sh
+bun add skinjob @skinjob/discord @skinjob/ai
+```
 
 Add a `.env` file:
 
@@ -75,35 +69,67 @@ Then start the bot!
 bunx skinjob
 ```
 
-### TODO
+### Backlog
 
-- [ ] fix(supervisor): make process cleanup reliable
-- [ ] fix(supervisor): handle renames
-- [x] feat(plugin): node.js workers
-- [x] feat(discord): text
-- [x] feat(ai): basic ai completions
-- [ ] feat(discord): images
-- [ ] feat(discord): audio
-- [ ] feat(chat): images
-- [ ] feat(chat): audio
-- [ ] feat(chat): joins, parts, quits, kicks, bans, topics, notices
-- [ ] feat(chat): system messages
-- [ ] feat(chat): move RichText types into protocol, cut down on `any`
-- [ ] feat(supervisor): worker signals
-- [ ] feat(services): speech
-- [ ] feat(services): voice
-- [ ] feat(services): configuration
-- [ ] feat(services): bridge
-- [ ] feat(clients): telegram
-- [ ] feat(clients): irc
-- [ ] feat(clients): irccloud
-- [ ] feat(clients): slack
-- [ ] feat(clients): matrix
-- [ ] chore: use bun catalogs
-
-### Ideas
-
-- [ ] feat(plugin): dotnet workers
-- [ ] feat(plugin): python workers
-- [ ] feat(plugin): ruby workers
-- [ ] feat(plugin): golang workers
+- [ ] Bugs
+  - [ ] supervisor: make process cleanup reliable
+  - [ ] supervisor: handle renames
+- [ ] Signal Protocols
+  - [x] Chat
+  - [ ] Authz
+- [ ] Chat Services
+  - [x] discord
+  - [x] telegram
+  - [ ] irc
+  - [ ] irccloud
+  - [ ] slack
+  - [ ] matrix
+  - [ ] signal
+- [ ] Plugins
+  - [x] node.js workers
+  - [ ] deno workers
+- [ ] AI
+  - [x] basic chat completions
+- [ ] Services
+  - [x] basic bridge
+- [ ] Telegram
+  - [ ] rich text support
+  - [ ] audio messages
+  - [ ] video messages
+- [ ] Discord
+  - [ ] images
+  - [ ] audio attachments
+- [ ] Chat Signal Protocol
+  - [ ] revisit/refine signal and filter typings (take advantage of narrowing)
+    - better platform-agnostic identifier types for users/channels/etc
+  - [ ] image attachments
+  - [ ] audio attachments
+  - [ ] "actions" in irc sense
+  - [ ] join, part, quit, kick, ban, topic, notice
+  - [ ] edit, delete, pin/unpin
+  - [ ] system messages
+  - [ ] move rich text types (not functions) into protocol, improve typing
+  - [ ] click signal, "buttons" in rich text
+  - [ ] support maxMessageLength in RichText rendering
+  - [ ] export helper for plain text maxMessageLength
+  - [ ] common filters, per-platform/network, channel, userID
+  - [ ] authz filters
+  - [ ] platform capability detection (e.g. buttons)
+  - [ ] platform policy detection (e.g. log retention)
+- [ ] Supervisor
+  - [ ] worker signals
+  - [ ] pub/sub patterns (`topic/*`) - if possible, for protocol-specific narrowing
+- [ ] Services
+  - [ ] speech
+  - [ ] voice
+  - [ ] configuration
+- [ ] Bridge
+  - [ ] better handling of bot responses
+- [ ] Chores
+  - [ ] Use Bun catalogs
+- [ ] Pipe Dreams
+  - [ ] plugin: dotnet workers
+  - [ ] plugin: python workers
+  - [ ] plugin: ruby workers
+  - [ ] plugin: golang workers
+  - [ ] plugin: lua workers

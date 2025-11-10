@@ -1,4 +1,4 @@
 import { Service } from "@skinjob/service"
 import type { AIContract } from "./AIContract"
 
-export const AI = Service.client<AIContract>("ai")
+export const AI = Service.client<AIContract>("ai", 60_000)

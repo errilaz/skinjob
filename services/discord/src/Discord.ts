@@ -68,25 +68,24 @@ function startClient(
   }
 
   function onShardDisconnect({ code }: CloseEvent) {
-    console.log(`DISCORD: shard disconnected (${code})`)
+    if (debug) console.log(`DISCORD: shard disconnected (${code})`)
     process.exit(0)
   }
 
   function onInvalidated() {
-    console.log("DISCORD: invalidated")
+    if (debug) console.log("DISCORD: invalidated")
     process.exit(0)
   }
 
   function onDebug(message: string) {
-    console.log(`DISCORD: ${message}`)
+    if (debug) console.log(`DISCORD: ${message}`)
   }
 
   function onMessageCreate(
     create: OmitPartialGroupDMChannel<Message<boolean>>,
   ) {
-    if (debug) {
+    if (debug)
       console.log(`DISCORD: onMessageCreate: ${JSON.stringify(create)}`)
-    }
     if (create.channel.type === ChannelType.GuildText) {
       if (!create.guildId) throw new Error("Expected 'guildId'.")
       Bus.send<ChannelMessageEvent<DiscordPlatform>>({

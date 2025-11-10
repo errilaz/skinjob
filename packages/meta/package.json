@@ -15,6 +15,9 @@
     "type": "git",
     "url": "https://github.com/errilaz/skinjob.git"
   },
+  "scripts": {
+    "prepare": "cp ../../README.md ./README.md"
+  },
   "dependencies": {
     "@skinjob/bus": "workspace:*",
     "@skinjob/service": "workspace:*",

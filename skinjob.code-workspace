@@ -10,6 +10,14 @@
       "**/.DS_Store": true,
       "**/Thumbs.db": true,
       "**/node_modules": true
-    }
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+      ".env": ".env.*",
+      "package.json": "bun.lock, .git*, playwright.*, biome.json*, bunfig.toml",
+      "tsconfig.json": "tsconfig.*.json",
+      "README.md": "LICENSE",
+    },
   }
 }
