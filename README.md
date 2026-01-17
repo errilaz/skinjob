@@ -1,6 +1,6 @@
 # skinjob
 
-🚧 Preview Quality Software: Works On My Machine 🚧
+🚧 Preview Quality Software: Works On My Machine 🚧: Mostly usable but components may be heavy WIP and even contain syntax errors
 
 ### What is skinjob?
 
@@ -87,11 +87,14 @@ bunx skinjob
   - [ ] signal
 - [ ] Plugins
   - [x] node.js workers
+  - [x] shell workers
+  - [x] docker workers
   - [ ] deno workers
 - [ ] AI
   - [x] basic chat completions
 - [ ] Services
   - [x] basic bridge
+  - [x] flat json file key/value storage (@skinjob/storage)
 - [ ] Telegram
   - [ ] rich text support
   - [ ] audio messages
