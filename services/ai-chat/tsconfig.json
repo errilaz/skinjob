@@ -1,6 +1,7 @@
 {
   "references": [
-    { "path": "../bus/tsconfig.json" }
+    { "path": "../../packages/service/tsconfig.json" },
+    { "path": "../ai/tsconfig.json" }
   ],
   "compilerOptions": {
     "composite": true,

@@ -8,6 +8,7 @@ import type {
   ChatMessageCommand,
   ChatMessageEvent,
   ChatSignal,
+  ChatTypingCommand,
   ChatVoiceCommand,
   ChatVoiceEvent
 } from "./signals"
@@ -50,13 +51,30 @@ export namespace Chat {
     })
   }
 
+  export function typing<P extends ChatPlatform>(
+    target: ChatMessageSource
+  ) {
+    Bus.send<ChatTypingCommand<P>>({
+      service: "chat",
+      type: "command",
+      name: "typing",
+      target,
+    })
+  }
+
   export function reply<T extends ChatMessageEvent>(
     fn: (m: T) => any,
+    debug?: boolean
   ): Middleware<T, any> {
     return async (event) => {
-      if (event.isMine) return
-      const text = await Promise.resolve(fn(event))
-      say(event.source, text)
+      try {
+        if (event.isMine) return
+        const text = await Promise.resolve(fn(event))
+        say(event.source, text)
+      }
+      catch (error) {
+        if (debug) say(event.source, String(error))
+      }
     }
   }
 

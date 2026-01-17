@@ -13,10 +13,11 @@ export namespace AIService {
     readonly apiKey: string
     readonly baseURL?: string
     readonly serviceName?: string
+    readonly debug?: boolean
   }
 }
 
-function startAI({ apiKey, baseURL, ...options }: AIService.Options) {
+function startAI({ apiKey, baseURL, debug, ...options }: AIService.Options) {
   const client = new OpenAI({
     apiKey,
     baseURL,
@@ -24,16 +25,29 @@ function startAI({ apiKey, baseURL, ...options }: AIService.Options) {
 
   const serviceName = options.serviceName ?? "ai"
   Service.host<AIContract>(serviceName, {
-    async chat({ content, model }) {
+    async chat({ model, content }) {
       const response = await client.chat.completions.create({
         model,
         messages: [{ role: "user", content }],
       })
+      if (debug) {
+        console.log(JSON.stringify(response));
+      }
       return response.choices[0].message.content ?? "No response."
     },
     async models() {
       const models = await client.models.list({ timeout: 5000 })
       return models.data.map((model) => model.id)
+    },
+    async createCompletion({ model, messages }) {
+      const response = await client.chat.completions.create({
+        model,
+        messages,
+      })
+      if (debug) {
+        console.log(JSON.stringify(response));
+      }
+      return response.choices[0].message.content
     },
   })
 }

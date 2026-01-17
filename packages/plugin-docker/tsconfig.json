@@ -1,6 +1,6 @@
 {
   "references": [
-    { "path": "../bus/tsconfig.json" }
+    { "path": "../supervisor/tsconfig.json"}
   ],
   "compilerOptions": {
     "composite": true,
@@ -11,7 +11,7 @@
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": true
   },
   "include": ["./src"]
 }

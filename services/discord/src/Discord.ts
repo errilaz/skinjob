@@ -13,6 +13,7 @@ import {
   type CloseEvent,
   type Message,
   type OmitPartialGroupDMChannel,
+  PartialMessage,
   Partials,
 } from "discord.js"
 import { getBusText, renderRichText, splitMaxLength } from "./utilities"
@@ -55,11 +56,13 @@ function startClient(
   client.on("invalidated", onInvalidated)
   if (debug) client.on("debug", onDebug)
   Bus.receive("chat", "command", "message", onMessageCommand)
+  Bus.receive("chat", "command", "typing", onTypingCommand)
   return client.login(token)
 
   function onClientReady() {
     console.log("DISCORD: connected")
     client.on("messageCreate", onMessageCreate)
+    client.on("messageUpdate", onMessageUpdate)
   }
 
   function onError(error: Error) {
@@ -82,10 +85,10 @@ function startClient(
   }
 
   function onMessageCreate(
-    create: OmitPartialGroupDMChannel<Message<boolean>>,
+    create: OmitPartialGroupDMChannel<Message>,
   ) {
     if (debug)
-      console.log(`DISCORD: onMessageCreate: ${JSON.stringify(create)}`)
+      console.log(`DISCORD: messageCreate: ${JSON.stringify(create)}`)
     if (create.channel.type === ChannelType.GuildText) {
       if (!create.guildId) throw new Error("Expected 'guildId'.")
       Bus.send<ChannelMessageEvent<DiscordPlatform>>({
@@ -105,6 +108,12 @@ function startClient(
         isMine: create.author.id === client.user?.id,
         text: getBusText(create.cleanContent, create.attachments),
       })
+      create.attachments.each((value, key) => {
+        console.log("attachment", key, JSON.stringify(value));
+      })
+      create.embeds.forEach((value, key) => {
+        console.log("embeds", key, JSON.stringify(value));
+      })
     } else if (create.channel.type === ChannelType.DM) {
       Bus.send<DirectMessageEvent<DiscordPlatform>>({
         service: "chat",
@@ -122,6 +131,17 @@ function startClient(
         text: getBusText(create.cleanContent, create.attachments),
       })
     }
+  }
+
+  function onMessageUpdate(message: OmitPartialGroupDMChannel<Message | PartialMessage>, update: OmitPartialGroupDMChannel<Message>) {
+    if (debug)
+      console.log(`DISCORD: messageUpdate: ${JSON.stringify(message)} -> ${JSON.stringify(update)}`)
+    update.attachments.each((value, key) => {
+      console.log("attachment", key, JSON.stringify(value));
+    })
+    update.embeds.forEach((value, key) => {
+      console.log("embed", key, JSON.stringify(value));
+    })
   }
 
   function onMessageCommand({ target, text, rich }: ChatMessageCommand) {
@@ -153,4 +173,26 @@ function startClient(
       }
     }
   }
+
+  function onTypingCommand({ target }: ChatMessageCommand) {
+    if (target.platform !== "discord") {
+      return
+    }
+    if (target.type === "channel") {
+      const guild = client.guilds.resolve(target.guildId)
+      if (!guild) throw new Error("Invalid guild ID.")
+      const channel = guild.channels.resolve(target.channelId)
+      if (!channel) throw new Error("Invalid channel ID.")
+      if (channel.type !== ChannelType.GuildText)
+        throw new Error("Invalid channel type.")
+      channel.sendTyping();
+    } else if (target.type === "direct") {
+      const user = client.users.resolve(target.authorId)
+      if (!user) throw new Error("Could not find user.")
+      const channel = user.dmChannel
+      if (!channel) throw new Error("Count not get DM channel.")
+      channel.sendTyping();
+    }
+  }
+
 }

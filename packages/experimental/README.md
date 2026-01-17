@@ -1,8 +1,18 @@
-# Chat Experimental
+# Experimental
+
+## Bus
+
+- worker events: `bus:event/workerStarted`, `bus:event/workerStopped`
+- service discovery/zero-downtime
+  - workers can opt in to heartbeats?
+  - workers can opt in to queueing?
+  - services associated with workers?
+  - queueing via plugin?
+
+## Chat
 
 - s/service/namespace
 - Turn everything into URLs
-
 
 Bus signals
 

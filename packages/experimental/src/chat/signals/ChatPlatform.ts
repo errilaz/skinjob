@@ -7,6 +7,9 @@ export type ChatCapabilities = {
   pinType: "multiple" | "single"
   editMessage: boolean
   deleteMessage: boolean
+  voiceMessage: boolean
+  videoMessage: boolean
+  attachments: boolean
 }
 
 export type ParseChatCapability = (
@@ -16,5 +19,4 @@ export type StringifyChatCapability = (
   capability: keyof ChatCapabilities,
 ) => string
 
-export type ChatCapabilityType = "bit" | "flag"
-
+export type ChatCapabilityType = "bit" | "choice"

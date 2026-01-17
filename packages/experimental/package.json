@@ -1,12 +1,10 @@
 {
-  "name": "@skinjob/monorepo",
-  "version": "0.0.1",
+  "name": "@skinjob/experimental",
   "private": true,
+  "version": "0.0.1",
+  "type": "module",
   "license": "MIT",
-  "workspaces": [
-    "packages/*",
-    "services/*"
-  ],
+  "exports": "./src/index.ts",
   "author": {
     "name": "errilaz",
     "url": "http://github.com/errilaz"
@@ -14,8 +12,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/errilaz/skinjob.git"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.3.11"
   }
 }

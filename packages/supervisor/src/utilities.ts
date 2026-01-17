@@ -11,7 +11,9 @@ export function kill(pid: number) {
     try {
       process.kill(-pid, "SIGKILL")
     } catch {
-      process.kill(pid, "SIGKILL")
+      try {
+        process.kill(pid, "SIGKILL")
+      } catch {}
     }
   }
 }

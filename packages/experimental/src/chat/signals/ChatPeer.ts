@@ -1,0 +1,1 @@
+export type ChatPeer = string
